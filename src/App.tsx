@@ -51,6 +51,7 @@ export default function App() {
       enabled: false,
       task: '',
     })
+    setInput("")
   }
 
 
