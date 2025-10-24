@@ -2,11 +2,7 @@ import { useState } from "react"
 
 export default function App() {
   const [input, setInput] = useState("")
-  const [tasks, setTasks] = useState([
-    'Estudar JavaScript',
-    'Estudar TypeScript',
-    'Comprar React + TypeScript',
-  ])
+  const [tasks, setTasks] = useState<string[]>([])
   const [taskEdit, setTaskEdit] = useState({
     enabled: false,
     task: '',
@@ -65,7 +61,7 @@ export default function App() {
         onChange={(e) => setInput(e.target.value)}
       />
       <button onClick={handleRegister}>
-        Adicionar Task
+        {taskEdit.enabled ? "Atualizar Task" : "Adicionar Task"}
       </button>
 
       <hr />
