@@ -20,6 +20,11 @@ export default function App() {
     }
   }
 
+  function handleDelete(item:string) {
+    const removeTask = tasks.filter((task) => task !== item);
+    setTasks(removeTask)
+  }
+
   return (
     <>
       <h1>Lista de Nivelamento Dev | Smartts Utilities</h1>
@@ -33,13 +38,12 @@ export default function App() {
         Adicionar Task
       </button>
 
-      <p>Nome da Tarefa: {input}</p>
+      <hr />
 
-      {tasks.map((task, index) => (
-      <section>
-        {/* key é um identificador único para cada item da lista */}
-        <span key={index}>{task}</span>
-        <button>Excluir</button>
+      {tasks.map((item, index) => (
+      <section key={index}>
+        <span>{item}</span> 
+        <button onClick={() => handleDelete(item)}>Excluir</button>
       </section>
       ))}
     </>
