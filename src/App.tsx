@@ -46,6 +46,7 @@ export default function App() {
   function handleDelete(item:string) {
     const removeTask = tasks.filter((task) => task !== item);
     setTasks(removeTask)
+    localStorage.setItem("@cursoreact", JSON.stringify(removeTask))
   }
 
   function handleEdit(item:string) {
