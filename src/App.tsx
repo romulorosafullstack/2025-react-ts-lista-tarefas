@@ -12,16 +12,14 @@ export default function App() {
     task: '',
   })
 
-  //3) Crio o state para controlar o test passado no useEffect
-  const [test, setTest] = useState(true)
 
-  //1) Crio o useEffect pra esse componente
-  // Se o array de dependências [] é declarado com estado vazio/não há dependências, o useEffect é chamado só uma vez quando o componente é montado
-  // Se o array de dependências [state] é declarado com um ou mais estados, o useEffect é chamado uma vez ao renderizar o component e a cada vez que o(s) estado(s) passado(s) mudarem
   useEffect(() => {
-    console.log("Component renderizado!")
-    console.log(test)
-  }, [test]) // Executa o useEffect sempre que test mudar
+    // Pego as tarefas salvas no local storage
+    const tarefasSalvas = localStorage.getItem("@cursoreact")
+    if(tarefasSalvas) {
+      setTasks(JSON.parse(tarefasSalvas));
+    }
+  }, []) // Executa o useEffect ao montar o componente, mas não ao desmontar
 
 
 
@@ -73,8 +71,6 @@ export default function App() {
 
   return (
     <>
-      {/* 4) Crio botão que atualiza o state do test */}
-      <button onClick={() => setTest(!test)}>Mudar test</button>
       <h1>Lista de Nivelamento Dev | Smartts Utilities</h1>
 
       <input
