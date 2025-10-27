@@ -1,5 +1,5 @@
 // HOOK USEEFFECT
-// Hook reponsavel pelo ciclo de vida
+// Hook responsavel pelo ciclo de vida
 
 // 2) Importo o useEffect do react
 import { useEffect, useState } from "react"
@@ -16,8 +16,8 @@ export default function App() {
   const [test, setTest] = useState(true)
 
   //1) Crio o useEffect pra esse componente
-  // Se [] é um array de estados vazio/não há dependências, o useEffect é chamado só uma vez quando o componente é montado
-  // Se [state] é um array com um ou mais estados, o useEffect é chamado uma vez ao renderizar o component e a cada vez que o(s) estado(s) passado(s) mudarem
+  // Se o array de dependências [] é declarado com estado vazio/não há dependências, o useEffect é chamado só uma vez quando o componente é montado
+  // Se o array de dependências [state] é declarado com um ou mais estados, o useEffect é chamado uma vez ao renderizar o component e a cada vez que o(s) estado(s) passado(s) mudarem
   useEffect(() => {
     console.log("Component renderizado!")
     console.log(test)
@@ -40,6 +40,7 @@ export default function App() {
       setTasks([...tasks, input])
       // Limpo o input
       setInput("")
+      localStorage.setItem("@cursoreact", JSON.stringify([...tasks, input]))
   }
 
   function handleDelete(item:string) {
