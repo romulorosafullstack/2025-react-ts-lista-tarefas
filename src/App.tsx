@@ -1,4 +1,8 @@
-import { useState } from "react"
+// HOOK USEEFFECT
+// Hook reponsavel pelo ciclo de vida
+
+// 2) Importo o useEffect do react
+import { useEffect, useState } from "react"
 
 export default function App() {
   const [input, setInput] = useState("")
@@ -8,12 +12,25 @@ export default function App() {
     task: '',
   })
 
+  //3) Crio o state para controlar o test passado no useEffect
+  const [test, setTest] = useState(true)
+
+  //1) Crio o useEffect pra esse componente
+  // Se [] é um array de estados vazio/não há dependências, o useEffect é chamado só uma vez quando o componente é montado
+  // Se [state] é um array com um ou mais estados, o useEffect é chamado uma vez ao renderizar o component e a cada vez que o(s) estado(s) passado(s) mudarem
+  useEffect(() => {
+    console.log("Component renderizado!")
+    console.log(test)
+  }, [test]) // Executa o useEffect sempre que test mudar
+
+
+
   function handleRegister() {
     if (!input) {
       alert("O nome da tarefa não pode estar vazio!")
       return
     }
-    
+
     if (taskEdit.enabled) {
       handleEditSave();
       return
@@ -53,6 +70,8 @@ export default function App() {
 
   return (
     <>
+      {/* 4) Crio botão que atualiza o state do test */}
+      <button onClick={() => setTest(!test)}>Mudar test</button>
       <h1>Lista de Nivelamento Dev | Smartts Utilities</h1>
 
       <input
@@ -68,7 +87,7 @@ export default function App() {
 
       {tasks.map((item, index) => (
       <section key={index}>
-        <span>{item}</span> 
+        <span>{item}</span>
         <button onClick={() => handleEdit(item)}>Editar</button>
         <button onClick={() => handleDelete(item)}>Excluir</button>
       </section>
